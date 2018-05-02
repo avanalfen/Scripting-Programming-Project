@@ -19,6 +19,10 @@
 class NetworkStudent:public Student {
     
     public:
+        NetworkStudent(string studentID, string firstName, string lastName, string emailAddress, int age, std::vector<int> daysToComplete, Degree degree) : 
+        Student(studentID, firstName, lastName, emailAddress, age, daysToComplete, degree) {
+            
+        }
         
         
     
