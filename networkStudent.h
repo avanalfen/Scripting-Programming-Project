@@ -11,7 +11,17 @@
  * Created on May 1, 2018, 6:38 PM
  */
 
+#include"student.h"
+
 #ifndef NETWORKSTUDENT_H
 #define NETWORKSTUDENT_H
+
+class NetworkStudent:public Student {
+    
+    public:
+        
+        
+    
+};
 
 #endif /* NETWORKSTUDENT_H */

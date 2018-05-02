@@ -11,6 +11,11 @@
  * Created on May 1, 2018, 6:38 PM
  */
 
+#include "degree.h"
+#include <vector>
+#include <string>
+using namespace std;
+
 #ifndef STUDENT_H
 #define STUDENT_H
 
