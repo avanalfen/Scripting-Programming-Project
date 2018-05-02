@@ -24,7 +24,7 @@ class NetworkStudent:public Student {
             
         }
         
-        
+        Degree getDegreeProgram(); 
     
 };
 

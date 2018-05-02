@@ -11,7 +11,21 @@
  * Created on May 1, 2018, 6:38 PM
  */
 
+#include"student.h"
+
 #ifndef SECURITYSTUDENT_H
 #define SECURITYSTUDENT_H
+
+class SecurityStudent:public Student {
+    
+    public:
+        SecurityStudent(string studentID, string firstName, string lastName, string emailAddress, int age, std::vector<int> daysToComplete, Degree degree) : 
+        Student(studentID, firstName, lastName, emailAddress, age, daysToComplete, degree) {
+            
+        }
+        
+        Degree getDegreeProgram(); 
+    
+};
 
 #endif /* SECURITYSTUDENT_H */
