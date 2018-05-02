@@ -19,72 +19,45 @@ using namespace std;
 #include "student.h"
 
 
-class Student {
-    
-private:
-    string      studentID;
-    string      firstName;
-    string      lastName;
-    string      emailAddress;
-    int         age;
-    Degree      degree;
-    std::vector<int> daysToComplete;
-    
-
-public:
-    
-    Student(string studentID, string firstName, string lastName, string emailAddress, int age, std::vector<int> daysToComplete, Degree degree) {
-        this->studentID = studentID;
-        this->firstName = firstName;
-        this->lastName = lastName;
-        this->emailAddress = emailAddress;
-        this->age = age;
-    }
-    
-    ~Student() {
-        this->studentID = NULL;
-    }
-    
-    string  getStudentID() {
+string Student::getStudentID() {
         return this->studentID;
     }
-    void    setStudentID(int studentID) {
+
+void Student::setStudentID(int studentID) {
         this->studentID = studentID;
     }
-    
-    string  getFirstName() {
+
+string Student::getFirstName() {
         return this->firstName;
     }
-    void    setFirstName(string firstName) {
+
+void Student::setFirstName(string firstName) {
         this->firstName = firstName;
     }
-    
-    string  getLastName() {
+
+string Student::getLastName() {
         return this->lastName;
     }
-    void    setLastName(string lastName) {
+
+void Student::setLastName(string lastName) {
         this->lastName = lastName;
     }
-    
-    string  getEmailAddress() {
+
+string Student::getEmailAddress() {
         return this->emailAddress;
     }
-    void    setEmailAddress(string emailAddress) {
+
+void Student::setEmailAddress(string emailAddress) {
         this->emailAddress = emailAddress;
     }
-    
-    int     getAge() {
+
+int Student::getAge() {
         return this->age;
     }
-    void    setAge(int age) {
+
+void Student::setAge(int age) {
         this->age = age;
     }
-    
-    virtual string print();
-    
-    virtual Degree getDegreeProgram();
-    
-}; 
 
 string Student::print() {
     
