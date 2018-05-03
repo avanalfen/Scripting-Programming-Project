@@ -19,9 +19,16 @@
 class Roster {
     
 private:
-    Student * classRosterArray[5];
+    Student *classRosterArray[5];
     
 public:
+    Roster() {
+        
+    }
+    
+    void addStudentToRoster(Student student, int index);
+    void add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, Degree degree);
+    void remove(string studentID);
     
     
 };
