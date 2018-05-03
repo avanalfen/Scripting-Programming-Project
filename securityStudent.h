@@ -24,7 +24,7 @@ class SecurityStudent:public Student {
             
         }
         
-        Degree getDegreeProgram(); 
+        Degree getDegreeProgram() override; 
     
 };
 

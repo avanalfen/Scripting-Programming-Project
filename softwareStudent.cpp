@@ -12,3 +12,8 @@
  */
 
 #include "softwareStudent.h"
+
+Degree SoftwareStudent::getDegreeProgram() {
+    Degree degree = SOFTWARE;
+    return degree;
+}

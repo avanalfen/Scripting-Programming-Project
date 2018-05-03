@@ -12,3 +12,8 @@
  */
 
 #include "networkStudent.h"
+
+Degree NetworkStudent::getDegreeProgram() {
+    Degree degree = NETWORKING;
+    return degree;
+}

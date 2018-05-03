@@ -11,7 +11,19 @@
  * Created on May 1, 2018, 6:39 PM
  */
 
+#include "student.h"
+
 #ifndef ROSTER_H
 #define ROSTER_H
+
+class Roster {
+    
+private:
+    Student * classRosterArray[5];
+    
+public:
+    
+    
+};
 
 #endif /* ROSTER_H */

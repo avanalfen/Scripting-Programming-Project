@@ -12,3 +12,8 @@
  */
 
 #include "securityStudent.h"
+
+Degree SecurityStudent::getDegreeProgram() {
+    Degree degree = SECURITY;
+    return degree;
+}

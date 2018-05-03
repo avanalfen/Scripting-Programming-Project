@@ -12,3 +12,11 @@
  */
 
 #include "roster.h"
+#include <iostream>
+
+int main(int argc, char** argv) {
+    
+    cout << "Hello worlds" << endl;
+    
+    return 0;
+}
