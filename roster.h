@@ -19,14 +19,14 @@
 class Roster {
     
 private:
-    Student *classRosterArray[5];
+    vector<Student *> classRosterArray;
     
 public:
     Roster() {
         
     }
     
-    void addStudentToRoster(Student student, int index);
+    void addStudentToRoster(Student student);
     void add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, Degree degree);
     void remove(string studentID);
     

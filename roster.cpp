@@ -15,8 +15,8 @@
 #include "roster.h"
 #include <iostream>
 
-void Roster::addStudentToRoster(Student student, int index) {
-    this->classRosterArray[index] = &student;
+void Roster::addStudentToRoster(Student student) {
+    this->classRosterArray.push_back(&student);
 }
 
 void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, Degree degree) {
@@ -32,7 +32,16 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 }
 
 void Roster::remove(string studentID) {
-    
+    bool removedItem = false;
+    for (int i = 0; i < this->classRosterArray.size(); i++) {
+        if (this->classRosterArray[i]->getStudentID() == studentID) {
+            this->classRosterArray.erase(this->classRosterArray.begin() + (i - 1));
+            removedItem = true;
+        }
+    }
+    if (removedItem == false) {
+        cout << "a student with this ID was not found." << endl;
+    }
 }
 
 int main(int argc, char** argv) {
@@ -45,6 +54,8 @@ int main(int argc, char** argv) {
 "A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE",
 "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
 "A5,Austin,VanAlfen,austin.van.alfen@gmail.com,25,7,8,4,SOFTWARE"};
+    
+    cout << "Course Title: Scripting and Programming Applications\n" << "Language: C++\n" << "Student ID: #000567731\n" << "My name: Austin Van Alfen" << endl;
     
     return 0;
 }
