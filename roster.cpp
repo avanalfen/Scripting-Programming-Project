@@ -46,6 +46,9 @@ void Roster::remove(string studentID) {
 
 int main(int argc, char** argv) {
     
+    // F.1
+    cout << "Course Title: Scripting and Programming Applications\n" << "Language: C++\n" << "Student ID: #000567731\n" << "My name: Austin Van Alfen" << endl;
+    
     Roster studentRoster;
     
     const string studentData[] =
@@ -55,7 +58,18 @@ int main(int argc, char** argv) {
 "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
 "A5,Austin,VanAlfen,austin.van.alfen@gmail.com,25,7,8,4,SOFTWARE"};
     
-    cout << "Course Title: Scripting and Programming Applications\n" << "Language: C++\n" << "Student ID: #000567731\n" << "My name: Austin Van Alfen" << endl;
+    // add each student to the roster here.
     
+    
+    // then follow these steps.
+    /*
+        classRoster.printAll();
+        classRoster.printInvalidEmails();
+        //loop through classRosterArray and for each element:
+        classRoster.printAverageDaysInCourse(current_object's student id);
+        classRoster.printByDegreeProgram(SOFTWARE);
+        classRoster.remove("A3");
+        classRoster.remove("A3");
+     */
     return 0;
 }
