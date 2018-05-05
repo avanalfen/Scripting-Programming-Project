@@ -39,6 +39,7 @@ public:
         this->lastName = lastName;
         this->emailAddress = emailAddress;
         this->age = age;
+        this->daysToComplete = daysToComplete;
     }
     
     ~Student() {
@@ -59,6 +60,9 @@ public:
     
     int     getAge();
     void    setAge(int age);
+    
+    std::vector<int> getDaysInCourses();
+    void setDaysInCourses();
     
     virtual string print();
     

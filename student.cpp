@@ -11,6 +11,7 @@
  * Created on May 1, 2018, 6:38 PM
  */
 
+#include <iostream>
 #include "degree.h"
 #include <vector>
 #include <string>
@@ -63,6 +64,10 @@ string Student::print() {
     
 }
 
+std::vector<int> Student::getDaysInCourses() {
+    return this->daysToComplete;
+}
+
 Degree Student::getDegreeProgram() {
-    
+    return this->degree;
 }

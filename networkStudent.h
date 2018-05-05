@@ -12,6 +12,7 @@
  */
 
 #include"student.h"
+#include <iostream>
 
 #ifndef NETWORKSTUDENT_H
 #define NETWORKSTUDENT_H

@@ -19,7 +19,7 @@
 class Roster {
     
 private:
-    vector<Student *> classRosterArray;
+    vector<Student> classRosterArray;
     
 public:
     Roster() {
