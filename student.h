@@ -40,6 +40,7 @@ public:
         this->emailAddress = emailAddress;
         this->age = age;
         this->daysToComplete = daysToComplete;
+        this->degree = degree;
     }
     
     ~Student() {

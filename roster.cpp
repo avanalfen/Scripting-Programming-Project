@@ -31,7 +31,13 @@ void Roster::printAll() {
         
         Student student = classRosterArray.at(i);
 
-        string studentID = student.getStudentID();
+        this->print(student);
+    }
+    
+}
+
+void Roster::print(Student student) {
+    string studentID = student.getStudentID();
         string firstName = student.getFirstName();
         string lastName = student.getLastName();
         int age = student.getAge();
@@ -62,8 +68,6 @@ void Roster::printAll() {
                 daysInCourses.at(1), 
                 daysInCourses.at(2),
                 stringDegree.c_str());
-    }
-    
 }
 
 //that correctly prints a student’s average number of days in the three courses. The student is identified by the studentID parameter.
@@ -91,14 +95,22 @@ void Roster::printInvalidEmails() {
         int spacesNumber = email.find(" ", 0);
         
         if (spacesNumber > 0) {
-            cout << email << endl;
+            cout << email << "\n" << endl;
         }
     }
 }
 
 //prints out student information for a degree program specified by an enumerated type
 void Roster::printByDegreeProgram(int degreeProgram) {
-    
+    for(int i = 0; i < classRosterArray.size(); i++) {
+        
+        Student student = classRosterArray.at(i);
+        Degree degree = student.getDegreeProgram();
+        
+        if (degreeProgram == degree) {
+            this->print(student);
+        }
+    }
 }
 
 void Roster::addStudentToRoster(Student student) {
@@ -136,13 +148,18 @@ void Roster::remove(string studentID) {
     bool removedItem = false;
     for (int i = 0; i < this->classRosterArray.size(); i++) {
         if (this->classRosterArray[i].getStudentID() == studentID) {
-            this->classRosterArray.erase(this->classRosterArray.begin() + (i - 1));
+            this->classRosterArray.erase(this->classRosterArray.begin() + i);
             removedItem = true;
+            printf("Student Deleted\n"); 
         }
     }
     if (removedItem == false) {
-        cout << "a student with this ID was not found." << endl;
+        printf("A student with that id cannot be found.\n");
     }
+}
+
+vector<Student> Roster::getRoster() {
+    return this->classRosterArray;
 }
 
 int main(int argc, char** argv) {
@@ -232,6 +249,19 @@ int main(int argc, char** argv) {
         
         studentRoster.printAll();
         studentRoster.printInvalidEmails();
+        
+        vector<Student> roster = studentRoster.getRoster();
+        
+        for (int i=0; i<roster.size(); i++) {
+            studentRoster.printDaysInCourse(roster.at(i).getStudentID());
+        }
+        
+        cout << "\n" << endl;
+        
+        studentRoster.printByDegreeProgram(SOFTWARE);
+        
+        studentRoster.remove("A3");
+        studentRoster.remove("A3");
     }
     
     
