@@ -12,6 +12,7 @@
  */
 
 #include "student.h"
+#include <iostream>
 
 #ifndef ROSTER_H
 #define ROSTER_H
@@ -24,6 +25,9 @@ private:
 public:
     Roster() {
         
+    }
+    ~Roster() {
+        cout << "Roster is gone." << endl;
     }
     
     void printAll();

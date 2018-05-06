@@ -19,10 +19,13 @@
 
 class NetworkStudent:public Student {
     
+    private:
+        Degree degree;
+        
     public:
         NetworkStudent(string studentID, string firstName, string lastName, string emailAddress, int age, std::vector<int> daysToComplete, Degree degree) : 
         Student(studentID, firstName, lastName, emailAddress, age, daysToComplete, degree) {
-            
+            this->degree = degree;
         }
         
         Degree getDegreeProgram(); 

@@ -60,8 +60,38 @@ void Student::setAge(int age) {
         this->age = age;
     }
 
-string Student::print() {
-    
+void Student::print() {
+    string studentID = this->getStudentID();
+    string firstName = this->getFirstName();
+    string lastName = this->getLastName();
+    int age = this->getAge();
+    std::vector<int> daysInCourses = this->getDaysInCourses();
+    Degree studentDegree = this->getDegreeProgram();
+    string stringDegree;
+
+    if (studentDegree == NETWORKING) {
+        stringDegree = "Network";
+    } else if (studentDegree == SOFTWARE) {
+        stringDegree = "Software";
+    } else if (studentDegree == SECURITY) {
+        stringDegree = "Security";
+    }
+
+    printf("\n%s "
+            "\t First name: %s "
+            "\t Last name: %s "
+            "\t Age: %d "
+            "\t daysInCourse: {%d, %d, %d} "
+            "\t Degree Program: %s"
+            "\n\n", 
+            studentID.c_str(), 
+            firstName.c_str(), 
+            lastName.c_str(), 
+            age, 
+            daysInCourses.at(0), 
+            daysInCourses.at(1), 
+            daysInCourses.at(2),
+            stringDegree.c_str());
 }
 
 std::vector<int> Student::getDaysInCourses() {

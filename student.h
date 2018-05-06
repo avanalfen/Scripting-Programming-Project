@@ -41,6 +41,7 @@ public:
         this->age = age;
         this->daysToComplete = daysToComplete;
         this->degree = degree;
+        printf("\nstudent is created ");
     }
     
     ~Student() {
@@ -65,7 +66,7 @@ public:
     std::vector<int> getDaysInCourses();
     void setDaysInCourses();
     
-    virtual string print();
+    virtual void print();
     
     virtual Degree getDegreeProgram();
     

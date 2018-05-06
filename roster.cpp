@@ -31,43 +31,9 @@ void Roster::printAll() {
         
         Student student = classRosterArray.at(i);
 
-        this->print(student);
+        student.print();
     }
     
-}
-
-void Roster::print(Student student) {
-    string studentID = student.getStudentID();
-        string firstName = student.getFirstName();
-        string lastName = student.getLastName();
-        int age = student.getAge();
-        std::vector<int> daysInCourses = student.getDaysInCourses();
-        Degree studentDegree = student.getDegreeProgram();
-        string stringDegree;
-
-        if (studentDegree == NETWORK) {
-            stringDegree = "Network";
-        } else if (studentDegree == SOFTWARE) {
-            stringDegree = "Software";
-        } else if (studentDegree == SECURITY) {
-            stringDegree = "Security";
-        }
-        
-        printf("%s "
-                "\t First name: %s "
-                "\t Last name: %s "
-                "\t Age: %d "
-                "\t daysInCourse: {%d, %d, %d} "
-                "\t Degree Program: %s"
-                "\n\n", 
-                studentID.c_str(), 
-                firstName.c_str(), 
-                lastName.c_str(), 
-                age, 
-                daysInCourses.at(0), 
-                daysInCourses.at(1), 
-                daysInCourses.at(2),
-                stringDegree.c_str());
 }
 
 //that correctly prints a student’s average number of days in the three courses. The student is identified by the studentID parameter.
@@ -108,7 +74,7 @@ void Roster::printByDegreeProgram(int degreeProgram) {
         Degree degree = student.getDegreeProgram();
         
         if (degreeProgram == degree) {
-            this->print(student);
+            student.print();
         }
     }
 }
@@ -119,7 +85,7 @@ void Roster::addStudentToRoster(Student student) {
 
 //sets the instance variables from part D1 and updates the roster
 void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, Degree degree) {
-    if (degree == NETWORK) {
+    if (degree == NETWORKING) {
         int daysInCourses[] = {daysInCourse1, daysInCourse2, daysInCourse3};
         std::vector<int> vectorDaysInCourses (daysInCourses, daysInCourses + sizeof(daysInCourses) / sizeof(int));
         NetworkStudent newStudent = NetworkStudent(studentID, firstName, lastName, emailAddress, age, vectorDaysInCourses, degree);
@@ -167,7 +133,7 @@ int main(int argc, char** argv) {
     // F.1
     cout << "Course Title: Scripting and Programming Applications\n" << "Language: C++\n" << "Student ID: #000567731\n" << "Name: Austin Van Alfen" << "\n" << endl;
     
-    Roster studentRoster;
+    Roster* studentRoster = new Roster;
     
     const string studentData[] =
 {"A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
@@ -235,7 +201,7 @@ int main(int argc, char** argv) {
                     } else if (stringDegree == "SECURITY") {
                         degree = SECURITY;
                     } else if (stringDegree == "NETWORK") {
-                        degree = NETWORK;
+                        degree = NETWORKING;
                     }
                 }
                 
@@ -243,25 +209,27 @@ int main(int argc, char** argv) {
                 r++;
             }
             
-            studentRoster.add(id, firstName, lastName, email, age, daysForFirstClass, daysForSecondClass, daysForThirdClass, degree);
+            (*studentRoster).add(id, firstName, lastName, email, age, daysForFirstClass, daysForSecondClass, daysForThirdClass, degree);
              
         }
         
-        studentRoster.printAll();
-        studentRoster.printInvalidEmails();
+        (*studentRoster).printAll();
+        (*studentRoster).printInvalidEmails();
         
-        vector<Student> roster = studentRoster.getRoster();
+        vector<Student> roster = (*studentRoster).getRoster();
         
         for (int i=0; i<roster.size(); i++) {
-            studentRoster.printDaysInCourse(roster.at(i).getStudentID());
+            (*studentRoster).printDaysInCourse(roster.at(i).getStudentID());
         }
         
         cout << "\n" << endl;
         
-        studentRoster.printByDegreeProgram(SOFTWARE);
+        (*studentRoster).printByDegreeProgram(SOFTWARE);
         
-        studentRoster.remove("A3");
-        studentRoster.remove("A3");
+        (*studentRoster).remove("A3");
+        (*studentRoster).remove("A3");
+        
+        (*studentRoster).~Roster();
     }
     
     
