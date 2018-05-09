@@ -29,9 +29,7 @@ void Roster::printAll() {
     
     for(int i = 0; i < classRosterArray.size(); i++) {
         
-        Student student = classRosterArray.at(i);
-
-        student.print();
+        classRosterArray.at(i)->print();
     }
     
 }
@@ -40,7 +38,7 @@ void Roster::printAll() {
 void Roster::printDaysInCourse(string studentID) {
     for(int i = 0; i < classRosterArray.size(); i++) {
         
-        Student student = classRosterArray.at(i);
+        Student student = (*classRosterArray.at(i));
         std::vector<int> days = student.getDaysInCourses();
 
         if (student.getStudentID() == studentID) {
@@ -55,12 +53,14 @@ void Roster::printDaysInCourse(string studentID) {
 void Roster::printInvalidEmails() {
     for(int i = 0; i < classRosterArray.size(); i++) {
         
-        Student student = classRosterArray.at(i);
+        Student student = (*classRosterArray.at(i));
         string email = student.getEmailAddress();
         
         int spacesNumber = email.find(" ", 0);
+        int atNumber = email.find("@", 0);
+        int periodNumber = email.find(".", 0);
         
-        if (spacesNumber > 0) {
+        if (spacesNumber > 0 || atNumber < 0 || periodNumber < 0) {
             cout << email << "\n" << endl;
         }
     }
@@ -70,7 +70,7 @@ void Roster::printInvalidEmails() {
 void Roster::printByDegreeProgram(int degreeProgram) {
     for(int i = 0; i < classRosterArray.size(); i++) {
         
-        Student student = classRosterArray.at(i);
+        Student student = (*classRosterArray.at(i));
         Degree degree = student.getDegreeProgram();
         
         if (degreeProgram == degree) {
@@ -79,7 +79,7 @@ void Roster::printByDegreeProgram(int degreeProgram) {
     }
 }
 
-void Roster::addStudentToRoster(Student student) {
+void Roster::addStudentToRoster(Student* student) {
     this->classRosterArray.push_back(student);
 }
 
@@ -88,19 +88,19 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
     if (degree == NETWORKING) {
         int daysInCourses[] = {daysInCourse1, daysInCourse2, daysInCourse3};
         std::vector<int> vectorDaysInCourses (daysInCourses, daysInCourses + sizeof(daysInCourses) / sizeof(int));
-        NetworkStudent newStudent = NetworkStudent(studentID, firstName, lastName, emailAddress, age, vectorDaysInCourses, degree);
+        NetworkStudent* newStudent = new NetworkStudent(studentID, firstName, lastName, emailAddress, age, vectorDaysInCourses, degree);
         this->addStudentToRoster(newStudent);
         
     } else if (degree == SOFTWARE) {
         int daysInCourses[] = {daysInCourse1, daysInCourse2, daysInCourse3};
         std::vector<int> vectorDaysInCourses (daysInCourses, daysInCourses + sizeof(daysInCourses) / sizeof(int));
-        SoftwareStudent newStudent = SoftwareStudent(studentID, firstName, lastName, emailAddress, age, vectorDaysInCourses, degree);
+        SoftwareStudent* newStudent = new SoftwareStudent(studentID, firstName, lastName, emailAddress, age, vectorDaysInCourses, degree);
         this->addStudentToRoster(newStudent);
         
     } else if (degree == SECURITY) {
         int daysInCourses[] = {daysInCourse1, daysInCourse2, daysInCourse3};
         std::vector<int> vectorDaysInCourses (daysInCourses, daysInCourses + sizeof(daysInCourses) / sizeof(int));
-        SecurityStudent newStudent = SecurityStudent(studentID, firstName, lastName, emailAddress, age, vectorDaysInCourses, degree);
+        SecurityStudent* newStudent = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, vectorDaysInCourses, degree);
         this->addStudentToRoster(newStudent);
         
     } else {
@@ -113,8 +113,10 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 void Roster::remove(string studentID) {
     bool removedItem = false;
     for (int i = 0; i < this->classRosterArray.size(); i++) {
-        if (this->classRosterArray[i].getStudentID() == studentID) {
+        Student* removeStudent = this->classRosterArray[i];
+        if (removeStudent->getStudentID() == studentID) {
             this->classRosterArray.erase(this->classRosterArray.begin() + i);
+            delete removeStudent;
             removedItem = true;
             printf("Student Deleted\n"); 
         }
@@ -124,7 +126,7 @@ void Roster::remove(string studentID) {
     }
 }
 
-vector<Student> Roster::getRoster() {
+vector<Student*> Roster::getRoster() {
     return this->classRosterArray;
 }
 
@@ -216,10 +218,10 @@ int main(int argc, char** argv) {
         (*studentRoster).printAll();
         (*studentRoster).printInvalidEmails();
         
-        vector<Student> roster = (*studentRoster).getRoster();
+        vector<Student*> roster = (*studentRoster).getRoster();
         
         for (int i=0; i<roster.size(); i++) {
-            (*studentRoster).printDaysInCourse(roster.at(i).getStudentID());
+            (*studentRoster).printDaysInCourse(roster.at(i)->getStudentID());
         }
         
         cout << "\n" << endl;

@@ -20,7 +20,7 @@
 class Roster {
     
 private:
-    vector<Student> classRosterArray;
+    vector<Student*> classRosterArray;
     
 public:
     Roster() {
@@ -34,11 +34,11 @@ public:
     void printDaysInCourse(string studentID);
     void printInvalidEmails();
     void printByDegreeProgram(int degreeProgram);
-    void addStudentToRoster(Student student);
+    void addStudentToRoster(Student* student);
     void add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, Degree degree);
     void remove(string studentID);
     void print(Student student);
-    vector<Student> getRoster();
+    vector<Student*> getRoster();
     
     
 };
